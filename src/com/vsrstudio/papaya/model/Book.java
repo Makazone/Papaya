@@ -1,33 +1,24 @@
-
-
 package com.vsrstudio.papaya.model;
 
 import android.util.Log;
-import com.parse.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.books.Books;
-import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.Books.Volumes.List;
+import com.google.api.services.books.BooksRequestInitializer;
 import com.google.api.services.books.model.Volume;
 import com.google.api.services.books.model.Volumes;
+import com.parse.*;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.NumberFormat;
+import java.util.ArrayList;
 
 @ParseClassName("Book")
 public class Book extends ParseObject {
-    public Book() { }
+    public Book() {
+    }
 
-    public Book(String title, String authors, String genre,  String descr, String url, int rating) {
+    public Book(String title, String authors, String genre, String descr, String url, int rating) {
         setRating(rating);
         setTitle(title);
         setDescription(descr);
@@ -37,8 +28,7 @@ public class Book extends ParseObject {
     }
 
 
-
-    public static Book[] findBooksByString(String query) throws  Exception{
+    public static Book[] findBooksByString(String query) throws Exception {
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         Books books = new Books.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, null)
                 .setApplicationName("GBooks")
@@ -50,7 +40,7 @@ public class Book extends ParseObject {
         // Execute the query.
         Volumes volumes = volumesList.execute();
         int N = volumes.getTotalItems();
-        if (N== 0 || volumes.getItems() == null) {
+        if (N == 0 || volumes.getItems() == null) {
             //return 0;
         }
 
@@ -96,13 +86,9 @@ public class Book extends ParseObject {
         final ArrayList<Book> books = new ArrayList<Book>();
 
         query.findInBackground(new FindCallback<Book>() {
-            public void done(List<Book> scoreList, ParseException e) {
+            public void done(java.util.List<Book> scoreList, ParseException e) {
                 if (e == null) {
                     callback.done(scoreList, e);
-//                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
-//                    for (Book book : scoreList) {
-//                        books.add((Book)book);
-//                    }
                 } else {
                     Log.d("score", "Error: " + e.getMessage());
                 }
@@ -111,7 +97,7 @@ public class Book extends ParseObject {
     }
 
     public ParseUser getOwner() {
-        return (ParseUser)getParseObject("owner");
+        return (ParseUser) getParseObject("owner");
     }
 
     public void setOwner(ParseUser owner) {
@@ -125,6 +111,7 @@ public class Book extends ParseObject {
     public void setRating(double rating) {
         put("rating", rating);
     }
+
     public String getGenre() {
         return getString("genre");
     }
