@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import com.parse.Parse;
 import com.parse.ParseObject;
+import com.vsrstudio.papaya.model.Book;
 import com.vsrstudio.papaya.model.User;
 //import com.vsrstudio.papaya.model.User;
 
@@ -22,6 +23,7 @@ public class Papaya {
         if (!wasSetUp) {
             // Register parse object subclasses
             ParseObject.registerSubclass(User.class);
+            ParseObject.registerSubclass(Book.class);
 
             Parse.initialize(context, "CWpI83oY22MKeVOS2hLoIR8ZW80RO0DjTQHjtRps", "Q9NsuN0NW1kcqjPf0xyLyDBW2HgmsXrVeVRP8cjA");
             wasSetUp = true;
