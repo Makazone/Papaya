@@ -68,6 +68,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             selectItem(1);
         }
 
+        try {
+            Book[] books = Book.findBooksByString("java");
+            for (Book b : books) {
+                System.out.println("TITLE ALBINA" + b.getTitle());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void setUpActionBar() {
