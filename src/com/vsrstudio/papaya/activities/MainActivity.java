@@ -2,7 +2,7 @@ package com.vsrstudio.papaya.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import com.vsrstudio.Papaya.R;
+import com.vsrstudio.papaya.R;
 
 public class MainActivity extends Activity {
 
@@ -10,4 +10,5 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
     }
+
 }
