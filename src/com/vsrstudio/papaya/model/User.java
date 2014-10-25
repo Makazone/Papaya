@@ -1,10 +1,25 @@
 package com.vsrstudio.papaya.model;
 
-import com.parse.Parse;
-import com.parse.ParseAnalytics;
+import com.parse.*;
 
-/**
- * Created by makazone on 25.10.14.
- */
-public class User {
+@ParseClassName("ParseUser")
+public class User extends ParseUser {
+    public static void createNewUser(String email, String pass) {
+        User newUser = new User();
+        newUser.setUsername(email);
+        newUser.setPassword(pass);
+
+        // other fields can be set just like with ParseObject
+
+        newUser.signUpInBackground(new SignUpCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    // Hooray! Let them use the app now.
+                } else {
+                    // Sign up didn't succeed. Look at the ParseException
+                    // to figure out what went wrong
+                }
+            }
+        });
+    }
 }
