@@ -45,6 +45,14 @@ public class LoginActivity extends Activity {
             showNoInternet();
         }
 
+        try {
+            Book[] books = Book.findBooksByString("java");
+            for (int i=0; i< books.length; ++i) {
+                System.out.println(books[i].getTitle());
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     public void startMainActivity() {

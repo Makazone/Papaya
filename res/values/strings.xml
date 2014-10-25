@@ -20,4 +20,25 @@
     <string name="logout">Logout</string>
     <string name="delete_user">Delete user</string>
     <string name="registration">Registration</string>
+
+    <string-array name="genres">
+        <item>Business books</item>
+        <item>Biographies and memoirs</item>
+        <item>Detective stories</item>
+        <item>Kid books</item>
+        <item>Design and art</item>
+        <item>Food and house</item>
+        <item>Sport and health</item>
+        <item>History</item>
+        <item>Computers</item>
+        <item>Love stories</item>
+        <item>Medicine</item>
+        <item>Science and technology</item>
+        <item>Education</item>
+        <item>Politics</item>
+        <item>Psychology</item>
+        <item>Fantasy</item>
+        <item>Fiction</item>
+        <item>Jurisprudence</item>
+    </string-array>
 </resources>

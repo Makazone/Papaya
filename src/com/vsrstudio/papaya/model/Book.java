@@ -1,3 +1,5 @@
+
+
 package com.vsrstudio.papaya.model;
 
 import android.util.Log;
@@ -5,6 +7,21 @@ import com.parse.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.books.Books;
+import com.google.api.services.books.BooksRequestInitializer;
+import com.google.api.services.books.Books.Volumes.List;
+import com.google.api.services.books.model.Volume;
+import com.google.api.services.books.model.Volumes;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.text.NumberFormat;
 
 @ParseClassName("Book")
 public class Book extends ParseObject {
@@ -19,8 +36,57 @@ public class Book extends ParseObject {
         setGenre(genre);
     }
 
-    public static Book[] findBooksByString(String query) {
-        return null;
+
+
+    public static Book[] findBooksByString(String query) throws  Exception{
+        JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+        Books books = new Books.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, null)
+                .setApplicationName("GBooks")
+                .setGoogleClientRequestInitializer(new BooksRequestInitializer("AIzaSyCyJ53XYkylA1w9Cr1CLshnaS3OB2JPLRA"))
+                .build();
+        // Set query string and filter only Google eBooks.
+        System.out.println("Query: [" + query + "]");
+        List volumesList = books.volumes().list(query);
+        // Execute the query.
+        Volumes volumes = volumesList.execute();
+        int N = volumes.getTotalItems();
+        if (N== 0 || volumes.getItems() == null) {
+            //return 0;
+        }
+
+        Book[] book = new Book[N];
+        int iB = 0;
+        // Output results.
+        for (Volume volume : volumes.getItems()) {
+            Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
+            //Volume.SaleInfo saleInfo = volume.getSaleInfo();
+            // Title.
+            book[iB].setTitle(volumeInfo.getTitle());
+            // Author(s).
+            java.util.List<String> authors = volumeInfo.getAuthors();
+            String strAuthors = "";
+            if (authors != null && !authors.isEmpty()) {
+                for (int i = 0; i < authors.size(); ++i) {
+                    strAuthors += authors.get(i);
+                    if (i < authors.size() - 1) {
+                        strAuthors += ", ";
+                    }
+                }
+            }
+            book[iB].setAuthors(strAuthors);
+            // Description (if any).
+            if (volumeInfo.getDescription() != null && volumeInfo.getDescription().length() > 0) {
+                book[iB].setDescription(volumeInfo.getDescription());
+            }
+            // Ratings (if any).
+            if (volumeInfo.getRatingsCount() != null && volumeInfo.getRatingsCount() > 0) {
+                int fullRating = (int) Math.round(volumeInfo.getAverageRating().doubleValue());
+                book[iB].setRating(volumeInfo.getRatingsCount());
+            }
+            iB++;
+
+        }
+        return book;
     }
 
     public static void getBooksForOwner(ParseUser owner, final FindCallback callback) {

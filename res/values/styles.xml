@@ -6,6 +6,8 @@
         <item name="android:actionBarStyle">@style/ActionBar.Solid</item>
         <item name="android:actionBarWidgetTheme">@style/ActionBar.Widget</item>
         <item name="android:actionBarItemBackground">@drawable/color_selector_actionbar</item>
+        <item name="android:editTextBackground">@drawable/edit_text_theme</item>
+        <item name="android:buttonStyle">@style/ButtonTheme</item>
     </style>
 
     <style name="ActionBar.Solid"
@@ -25,6 +27,10 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">@color/white</item>
+    </style>
+
+    <style name="ButtonTheme" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/button_default</item>
     </style>
 
 </resources>
