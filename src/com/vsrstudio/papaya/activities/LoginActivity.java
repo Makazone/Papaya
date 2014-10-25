@@ -41,11 +41,12 @@ public class LoginActivity extends Activity {
 
     public void startMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
+        finish();
     }
 
     public void showRegistration() {
+        ((TextView) findViewById(R.id.title)).setText(R.string.registration);
         getFragmentManager().beginTransaction().replace(R.id.container, new RegistrationFragment()).commit();
     }
 
@@ -58,6 +59,7 @@ public class LoginActivity extends Activity {
     }
 
     public void showLogin() {
+        ((TextView) findViewById(R.id.title)).setText(R.string.login);
         getFragmentManager().beginTransaction().replace(R.id.container, new LoginFragment()).commit();
     }
 

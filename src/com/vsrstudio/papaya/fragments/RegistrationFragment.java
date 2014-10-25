@@ -10,16 +10,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.ParseException;
-import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.activities.LoginActivity;
+import com.vsrstudio.papaya.model.User;
 
 public class RegistrationFragment extends Fragment implements View.OnClickListener {
 
     private Context context;
-    private TextView username;
+    private TextView email;
     private TextView password;
 
     public RegistrationFragment() {
@@ -29,8 +29,8 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         final View rootView = inflater.inflate(R.layout.fragment_registration, container, false);
         context = rootView.getContext();
 
-        username = (TextView) rootView.findViewById(R.id.username);
-        username.setTypeface(Papaya.robotoLight);
+        email = (TextView) rootView.findViewById(R.id.email);
+        email.setTypeface(Papaya.robotoLight);
 
         password = (TextView) rootView.findViewById(R.id.password);
         password.setTypeface(Papaya.robotoLight);
@@ -47,11 +47,11 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
     }
 
     private void registerUser() {
-        final String username = String.valueOf(this.username.getText());
+        final String email = String.valueOf(this.email.getText());
         final String password = String.valueOf(this.password.getText());
 
-        ParseUser user = new ParseUser();
-        user.setUsername(username);
+        User user = new User();
+        user.setUsername(email);
         user.setPassword(password);
         user.signUpInBackground(new SignUpCallback() {
             public void done(ParseException e) {

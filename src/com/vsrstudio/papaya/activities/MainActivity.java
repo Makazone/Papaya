@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +18,7 @@ import android.widget.TextView;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
+import com.vsrstudio.papaya.model.User;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -57,8 +57,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setUpActionBar();
 
         if (savedInstanceState == null) {
-            setItemChecked(findViewById(R.id.item_profile));
-            selectItem(0);
+            setItemChecked(findViewById(R.id.item_search));
+            selectItem(1);
         }
     }
 
@@ -84,6 +84,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void setUpDrawer() {
         final TextView profileItem = (TextView) findViewById(R.id.item_profile);
         profileItem.setTypeface(Papaya.robotoSlabLight);
+        profileItem.setText(User.getCurrentUser().getUsername());
         profileItem.setOnClickListener(this);
 
         final TextView searchItem = (TextView) findViewById(R.id.item_search);
@@ -180,7 +181,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 if (mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer))) {
                     mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
                 } else {
-                    Log.d("TAG", "opening");
+                    setTitle(getString(R.string.app_name));
                     mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
                 }
                 break;
