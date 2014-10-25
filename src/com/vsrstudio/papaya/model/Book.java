@@ -8,20 +8,28 @@ import com.parse.ParseObject;
 public class Book extends ParseObject {
     public Book() { }
 
-    public Book(String title, String authors, String descr, String url, double rating) {
+    public Book(String title, String authors, String genre,  String descr, String url, int rating) {
         setRating(rating);
         setTitle(title);
         setDescription(descr);
         setURL(url);
-        setRating(rating);
+        setAuthors(authors);
+        setGenre(genre);
     }
 
-    public double getRating() {
-        return getDouble("rating");
+    public int getRating() {
+        return getInt("rating");
     }
 
     public void setRating(double rating) {
         put("rating", rating);
+    }
+    public String getGenre() {
+        return getString("genre");
+    }
+
+    public void setGenre(String genre) {
+        put("genre", genre);
     }
 
     public String getURL() {
