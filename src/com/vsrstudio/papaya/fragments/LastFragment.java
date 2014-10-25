@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import com.vsrstudio.papaya.R;
 
 public class LastFragment extends Fragment {
@@ -18,6 +19,9 @@ public class LastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_last, container, false);
         context = rootView.getContext();
+
+        final ListView booksList = (ListView) rootView.findViewById(R.id.books_list);
+//        booksList.setAdapter(new);
 
         return rootView;
     }
