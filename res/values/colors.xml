@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="text_color">#212121</color>
+    <color name="secondary_text_color">#727272</color>
+    <color name="primary_green_400">#2baf2b</color>
+    <color name="primary_green_300">#42bd41</color>
+    <color name="primary_green_200">#72d572</color>
+    <color name="accent_orange_600">#fb8c00</color>
+    <color name="accent_orange_500">#ff9800</color>
+    <color name="accent_orange_400">#ffa726</color>
 </resources>
