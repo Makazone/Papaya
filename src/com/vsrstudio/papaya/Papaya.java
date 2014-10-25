@@ -14,18 +14,20 @@ public class Papaya {
      */
 
     private static boolean wasSetUp = false;
+
     public static void setUpParse(Context context) {
         if (!wasSetUp) {
             // Register parse object subclasses
 //            ParseObject.registerSubclass(User.class);
 
             Parse.initialize(context, "CWpI83oY22MKeVOS2hLoIR8ZW80RO0DjTQHjtRps", "Q9NsuN0NW1kcqjPf0xyLyDBW2HgmsXrVeVRP8cjA");
-
             wasSetUp = true;
         }
     }
 
-    /** PARSE METHODS END **/
+    /**
+     * PARSE METHODS END *
+     */
 
     public static Typeface robotoSlabRegular;
     public static Typeface robotoSlabLight;

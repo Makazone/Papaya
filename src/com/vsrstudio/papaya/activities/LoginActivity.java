@@ -1,24 +1,38 @@
 package com.vsrstudio.papaya.activities;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.parse.Parse;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends FragmentActivity implements View.OnClickListener {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.empty_layout);
-        Parse.initialize(this, "5jOeErzAv4j5BCWsLxNrjicpDvnhnH5cyyds6X4n", "gKJOrNRPpxW9i4lyWwaVog3apmaNsI3HR02sft4k");
+        Papaya.initializeFonts(this);
+        setUpActionBar();
+
+        Papaya.setUpParse(this);
 
     }
+
+//    private void showNoInternet() {
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new NoInternetFragment()).commit();
+//    }
+//
+//    private void showLoading() {
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoadingFragment()).commit();
+//    }
+//
+//    private void showLogin() {
+//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoginFragment()).commit();
+//    }
 
     private void setUpActionBar() {
         // Inflate your custom layout
@@ -44,4 +58,31 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         }
     }
+
+//    public static class NoInternetFragment extends android.support.v4.app.Fragment {
+//        public NoInternetFragment() {
+//            super();
+//        }
+//
+//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//            final View rootView = inflater.inflate(R.layout.fragment_no_internet, container, false);
+//
+//            ((TextView) rootView.findViewById(R.id.check_your_connection)).setTypeface(Papaya.robotoLight);
+//
+//            final TextView tryAgainButton = (TextView) rootView.findViewById(R.id.try_again);
+//            tryAgainButton.setTypeface(Papaya.robotoLight);
+//            tryAgainButton.setOnClickListener(new View.OnClickListener() {
+//                public void onClick(View view) {
+//                    if (!VKSdk.isLoggedIn()) {
+//                        ((LoginActivity) getActivity()).showLogin();
+//                    } else if (VKSdk.wakeUpSession()) {
+//                        ((LoginActivity) getActivity()).showLoading();
+//                        ((LoginActivity) getActivity()).getVkId();
+//                    }
+//                }
+//            });
+//
+//            return rootView;
+//        }
+//    }
 }
