@@ -18,6 +18,7 @@ import com.vsrstudio.papaya.fragments.LoadingFragment;
 import com.vsrstudio.papaya.fragments.LoginFragment;
 import com.vsrstudio.papaya.fragments.RegistrationFragment;
 import com.vsrstudio.papaya.model.Book;
+import com.vsrstudio.papaya.model.GoogleCallback;
 import com.vsrstudio.papaya.model.User;
 
 public class LoginActivity extends Activity {
@@ -41,13 +42,19 @@ public class LoginActivity extends Activity {
         }
 
         try {
-            Book[] books = Book.findBooksByString("java");
-            for (int i=0; i< books.length; ++i) {
-                System.out.println(books[i].getTitle());
-            }
+            Book.findBooksByString("java", new GoogleCallback<Book>() {
+                @Override
+                public void completedGoogleTask(ArrayList<Book> books) {
+                    System.out.println("SIZEEEE"+books.size());
+                    for (Book b : books) {
+                        System.out.println("TITLE ALBINA" + b.getTitle());
+                    }
+                }
+            });
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
+
     }
 
     public void startMainActivity() {
