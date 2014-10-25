@@ -26,9 +26,9 @@
                 android:padding="@dimen/drawer_padding"
                 android:gravity="center_vertical"
                 android:id="@+id/item_profile"
-                android:text="@string/profile" android:textColor="@color/text_color"
-                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
-                android:background="@drawable/selector_background"/>
+                android:text="@string/profile" android:textColor="@color/white"
+                android:textAppearance="@android:style/TextAppearance.Large"
+                android:background="@drawable/color_selector_actionbar"/>
         <include layout="@layout/divider"/>
         <TextView
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:gravity="center_vertical"
                 android:id="@+id/item_search"
                 android:text="@string/search" android:textColor="@color/text_color"
-                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:textAppearance="@android:style/TextAppearance.Large"
                 android:background="@drawable/selector_background"/>
         <include layout="@layout/divider"/>
         <TextView
@@ -47,7 +47,7 @@
                 android:gravity="center_vertical"
                 android:id="@+id/item_last"
                 android:text="@string/last" android:textColor="@color/text_color"
-                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:textAppearance="@android:style/TextAppearance.Large"
                 android:background="@drawable/selector_background"/>
         <include layout="@layout/divider"/>
         <TextView
@@ -57,7 +57,7 @@
                 android:gravity="center_vertical"
                 android:id="@+id/item_my_books"
                 android:text="@string/my_books" android:textColor="@color/text_color"
-                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:textAppearance="@android:style/TextAppearance.Large"
                 android:background="@drawable/selector_background"/>
         <include layout="@layout/divider"/>
         <TextView
@@ -67,7 +67,7 @@
                 android:gravity="center_vertical"
                 android:id="@+id/item_settings"
                 android:text="@string/settings" android:textColor="@color/text_color"
-                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:textAppearance="@android:style/TextAppearance.Large"
                 android:background="@drawable/selector_background"/>
     </LinearLayout>
 
