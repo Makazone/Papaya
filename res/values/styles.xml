@@ -10,6 +10,11 @@
         <item name="android:buttonStyle">@style/ButtonTheme</item>
     </style>
 
+    <style name="RatingBarSmall" parent="android:Widget.Holo.Light.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/ratingbar_small</item>
+        <item name="android:indeterminateDrawable">@drawable/ratingbar_small</item>
+    </style>
+
     <style name="ActionBar.Solid"
            parent="@android:style/Widget.Holo.ActionBar">
         <item name="android:background">@color/primary_green_400</item>

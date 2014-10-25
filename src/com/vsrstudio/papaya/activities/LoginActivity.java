@@ -12,9 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.parse.LogInCallback;
-import com.parse.ParseException;
-import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.LoadingFragment;
@@ -24,14 +21,12 @@ import com.vsrstudio.papaya.model.Book;
 import com.vsrstudio.papaya.model.GoogleCallback;
 import com.vsrstudio.papaya.model.User;
 
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-
 public class LoginActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.empty_layout);
+
         Papaya.initializeFonts(this);
         setUpActionBar();
 
