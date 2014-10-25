@@ -2,8 +2,12 @@
 <resources>
     <color name="white">#ffffffff</color>
     <color name="black">#ff000000</color>
-    <color name="text_color">#212121</color>
+    <!--<color name="text_color">#212121</color>-->
+    <color name="text_color">#ff000000</color>
     <color name="secondary_text_color">#727272</color>
+    <color name="divider_color">#dadada</color>
+    <color name="gray_background_color">#ffe1e1e1</color>
+
     <color name="primary_green_400">#2baf2b</color>
     <color name="primary_green_300">#42bd41</color>
     <color name="primary_green_200">#72d572</color>

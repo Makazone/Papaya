@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/primary_green_400"
+        android:focusableInTouchMode="true"
+        android:id="@+id/action_bar_root">
+    <ImageButton android:layout_width="?android:actionBarSize"
+                 android:layout_height="match_parent"
+                 android:id="@+id/show_menu"
+                 android:src="@drawable/ic_show_menu"
+                 android:background="@drawable/color_selector_actionbar"
+                 android:visibility="invisible"/>
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textAppearance="?android:attr/textAppearanceLarge"
+              android:textColor="@color/white"
+              android:id="@+id/title"
+              android:layout_centerVertical="true"
+              android:layout_centerHorizontal="true" android:gravity="center"/>
+</RelativeLayout>

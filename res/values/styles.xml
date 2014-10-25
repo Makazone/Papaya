@@ -5,6 +5,7 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:actionBarStyle">@style/ActionBar.Solid</item>
         <item name="android:actionBarWidgetTheme">@style/ActionBar.Widget</item>
+        <item name="android:actionBarItemBackground">@drawable/color_selector_actionbar</item>
     </style>
 
     <style name="ActionBar.Solid"

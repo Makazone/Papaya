@@ -1,5 +1,6 @@
 package com.vsrstudio.papaya.activities;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,13 +9,18 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -23,21 +29,22 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        Papaya.initializeFonts(this);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        // enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+//        // enable ActionBar app icon to behave as action to toggle nav drawer
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//        getActionBar().setHomeButtonEnabled(true);
 
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
                 mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                R.drawable.ic_show_menu,  /* nav drawer image to replace 'Up' caret */
                 R.string.drawer_open,  /* "open drawer" description for accessibility */
                 R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
@@ -53,9 +60,54 @@ public class MainActivity extends Activity {
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        setUpDrawer();
+        setUpActionBar();
+
         if (savedInstanceState == null) {
+            setItemChecked(findViewById(R.id.item_profile));
             selectItem(0);
         }
+    }
+
+    private void setUpActionBar() {
+        // Inflate your custom layout
+        final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(R.layout.action_bar, null);
+
+        // Set up your ActionBar
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setCustomView(actionBarLayout);
+
+        final TextView title = (TextView) findViewById(R.id.title);
+        title.setTypeface(Papaya.robotoSlabRegular);
+
+        final ImageButton showMenuButton = (ImageButton) findViewById(R.id.show_menu);
+        showMenuButton.setVisibility(View.VISIBLE);
+        showMenuButton.setOnClickListener(this);
+    }
+
+    private void setUpDrawer() {
+        final TextView profileItem = (TextView) findViewById(R.id.item_profile);
+        profileItem.setTypeface(Papaya.robotoSlabLight);
+        profileItem.setOnClickListener(this);
+
+        final TextView searchItem = (TextView) findViewById(R.id.item_search);
+        searchItem.setTypeface(Papaya.robotoSlabLight);
+        searchItem.setOnClickListener(this);
+
+        final TextView lastItem = (TextView) findViewById(R.id.item_last);
+        lastItem.setTypeface(Papaya.robotoSlabLight);
+        lastItem.setOnClickListener(this);
+
+        final TextView myBooksItem = (TextView) findViewById(R.id.item_my_books);
+        myBooksItem.setTypeface(Papaya.robotoSlabLight);
+        myBooksItem.setOnClickListener(this);
+
+        final TextView settingsItem = (TextView) findViewById(R.id.item_settings);
+        settingsItem.setTypeface(Papaya.robotoSlabLight);
+        settingsItem.setOnClickListener(this);
     }
 
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -99,15 +151,76 @@ public class MainActivity extends Activity {
                 title = getResources().getString(R.string.search);
         }
 
-//        mDrawerLayout.closeDrawer(mDrawerLayout);
-
         setTitle(title);
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
     }
 
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.item_profile:
+                setItemChecked(view);
+                position = 0;
+                mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                break;
+            case R.id.item_search:
+                setItemChecked(view);
+                position = 1;
+                mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                break;
+            case R.id.item_last:
+                setItemChecked(view);
+                position = 2;
+                mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                break;
+            case R.id.item_my_books:
+                setItemChecked(view);
+                position = 3;
+                mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                break;
+            case R.id.item_settings:
+                setItemChecked(view);
+                position = 4;
+                mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                break;
+            case R.id.show_menu:
+                if (mDrawerLayout.isDrawerOpen(findViewById(R.id.left_drawer))) {
+                    mDrawerLayout.closeDrawer(findViewById(R.id.left_drawer));
+                } else {
+                    Log.d("TAG", "opening");
+                    mDrawerLayout.openDrawer(findViewById(R.id.left_drawer));
+                }
+                break;
+        }
+    }
+
+    private void setItemChecked(View view) {
+        final TextView profileItem = (TextView) findViewById(R.id.item_profile);
+        profileItem.setTypeface(Papaya.robotoSlabLight);
+        profileItem.setActivated(false);
+
+        final TextView searchItem = (TextView) findViewById(R.id.item_search);
+        searchItem.setTypeface(Papaya.robotoSlabLight);
+        searchItem.setActivated(false);
+
+        final TextView lastItem = (TextView) findViewById(R.id.item_last);
+        lastItem.setTypeface(Papaya.robotoSlabLight);
+        lastItem.setActivated(false);
+
+        final TextView myBooksItem = (TextView) findViewById(R.id.item_my_books);
+        myBooksItem.setTypeface(Papaya.robotoSlabLight);
+        myBooksItem.setActivated(false);
+
+        final TextView settingsItem = (TextView) findViewById(R.id.item_settings);
+        settingsItem.setTypeface(Papaya.robotoSlabLight);
+        settingsItem.setActivated(false);
+
+        view.setActivated(true);
+        ((TextView) view).setTypeface(Papaya.robotoSlabRegular);
+    }
+
     public void setTitle(String title) {
-        getActionBar().setTitle(title);
+        ((TextView) findViewById(R.id.title)).setText(title);
     }
 
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -121,5 +234,4 @@ public class MainActivity extends Activity {
         // Pass any configuration change to the drawer toggles
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
 }

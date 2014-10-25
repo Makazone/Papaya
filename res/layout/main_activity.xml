@@ -11,16 +11,64 @@
             android:layout_height="match_parent"
             android:background="@color/white"/>
 
+    <!--android:layout_gravity="start"-->
     <LinearLayout
             android:id="@+id/left_drawer"
-            android:layout_width="240dp"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@color/primary_green_400"
+            android:background="@color/white"
             android:orientation="vertical">
 
-
-
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/drawer_padding"
+                android:gravity="center_vertical"
+                android:id="@+id/item_profile"
+                android:text="@string/profile" android:textColor="@color/text_color"
+                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:background="@drawable/selector_background"/>
+        <include layout="@layout/divider"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/drawer_padding"
+                android:gravity="center_vertical"
+                android:id="@+id/item_search"
+                android:text="@string/search" android:textColor="@color/text_color"
+                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:background="@drawable/selector_background"/>
+        <include layout="@layout/divider"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/drawer_padding"
+                android:gravity="center_vertical"
+                android:id="@+id/item_last"
+                android:text="@string/last" android:textColor="@color/text_color"
+                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:background="@drawable/selector_background"/>
+        <include layout="@layout/divider"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/drawer_padding"
+                android:gravity="center_vertical"
+                android:id="@+id/item_my_books"
+                android:text="@string/my_books" android:textColor="@color/text_color"
+                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:background="@drawable/selector_background"/>
+        <include layout="@layout/divider"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/drawer_padding"
+                android:gravity="center_vertical"
+                android:id="@+id/item_settings"
+                android:text="@string/settings" android:textColor="@color/text_color"
+                android:textAppearance="@android:style/TextAppearance.Large" android:typeface="monospace"
+                android:background="@drawable/selector_background"/>
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
