@@ -18,6 +18,9 @@ import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.LoadingFragment;
 import com.vsrstudio.papaya.fragments.LoginFragment;
 import com.vsrstudio.papaya.fragments.RegistrationFragment;
+import com.vsrstudio.papaya.model.Book;
+
+import java.io.IOException;
 
 public class LoginActivity extends Activity {
 
@@ -36,6 +39,14 @@ public class LoginActivity extends Activity {
             }
         } else {
             showNoInternet();
+        }
+        try {
+            Book[] books = Book.findBooksByString("java");
+            for (int i=0; i< books.length; ++i) {
+                System.out.println(books[i].getTitle());
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
     }
 
