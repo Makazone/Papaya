@@ -17,6 +17,10 @@ public class Book extends ParseObject {
         setGenre(genre);
     }
 
+    public static Book[] findBooksByString(String query) {
+        return null;
+    }
+
     public int getRating() {
         return getInt("rating");
     }
