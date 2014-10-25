@@ -122,11 +122,11 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
             JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
             Books books = new Books.Builder(AndroidHttp.newCompatibleTransport(), jsonFactory, null)
                     .setApplicationName("Papaya")
-                    .setGoogleClientRequestInitializer(new BooksRequestInitializer("AIzaSyAYFq146ySDF7lYG1QOXXLNqlxBuYh3yBQ"))
+                    .setGoogleClientRequestInitializer(new BooksRequestInitializer("AIzaSyBZfg6IF90p8ZiBB2ejokBv1ETscQkq7jY"))
                     .build();
             // Set query string and filter only Google eBooks.
             System.out.println("Query: [" + query + "]");
-            final List volumesList = books.volumes().list(query);
+            final List volumesList = books.volumes().list("intitle:"+query);
             volumes = volumesList.execute();
         } catch (Exception e) {
             this.exception = e;
