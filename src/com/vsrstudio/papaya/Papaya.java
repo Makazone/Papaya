@@ -22,7 +22,7 @@ public class Papaya {
     public static void setUpParse(Context context) {
         if (!wasSetUp) {
             // Register parse object subclasses
-            ParseObject.registerSubclass(User.class);
+//            ParseObject.registerSubclass(User.class);
             ParseObject.registerSubclass(Book.class);
 
             Parse.initialize(context, "CWpI83oY22MKeVOS2hLoIR8ZW80RO0DjTQHjtRps", "Q9NsuN0NW1kcqjPf0xyLyDBW2HgmsXrVeVRP8cjA");

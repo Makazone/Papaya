@@ -50,10 +50,8 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         final String email = String.valueOf(this.email.getText());
         final String password = String.valueOf(this.password.getText());
 
-        User user = new User();
-        user.setUsername(email);
-        user.setPassword(password);
-        user.signUpInBackground(new SignUpCallback() {
+//        User user = new User();
+        User.createNewUser(email, password, new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
                     ((LoginActivity) getActivity()).startMainActivity();
@@ -63,6 +61,18 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
                 }
             }
         });
+//        user.setUsername(email);
+//        user.setPassword(password);
+//        user.signUpInBackground(new SignUpCallback() {
+//            public void done(ParseException e) {
+//                if (e == null) {
+//                    ((LoginActivity) getActivity()).startMainActivity();
+//                } else {
+//                    e.printStackTrace();
+//                    Toast.makeText(context, R.string.connection_error, Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
     }
 
     public void onClick(View view) {
