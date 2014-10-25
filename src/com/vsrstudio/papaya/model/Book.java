@@ -52,6 +52,16 @@ public class Book extends ParseObject {
         });
     }
 
+    /**
+     * type = 0 money + exchange
+     * type = 1 money
+     * type = 2 exchange
+     * @param type
+     */
+    public void createBookOffer(int type, int amount) {
+
+    }
+
     public ParseUser getOwner() {
         return (ParseUser) getParseObject("owner");
     }

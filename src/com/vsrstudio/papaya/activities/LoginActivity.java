@@ -21,6 +21,8 @@ import com.vsrstudio.papaya.model.Book;
 import com.vsrstudio.papaya.model.GoogleCallback;
 import com.vsrstudio.papaya.model.User;
 
+import java.util.ArrayList;
+
 public class LoginActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
