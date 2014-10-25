@@ -2,14 +2,22 @@ package com.vsrstudio.papaya.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.LoadingFragment;
+import com.vsrstudio.papaya.fragments.LoginFragment;
+import com.vsrstudio.papaya.fragments.RegistrationFragment;
 
 public class LoginActivity extends Activity {
 
@@ -19,20 +27,39 @@ public class LoginActivity extends Activity {
         Papaya.initializeFonts(this);
         setUpActionBar();
 
-        Papaya.setUpParse(this);
+        if (Papaya.isOnline(this)) {
+            Papaya.setUpParse(this);
+            if (ParseUser.getCurrentUser() == null) {
+                showRegistration();
+            } else {
+                startMainActivity();
+            }
+        } else {
+            showNoInternet();
+        }
     }
 
-    //    private void showNoInternet() {
-//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new NoInternetFragment()).commit();
-//    }
-//
-    private void showLoading() {
+    public void startMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        startActivity(intent);
+    }
+
+    public void showRegistration() {
+        getFragmentManager().beginTransaction().replace(R.id.container, new RegistrationFragment()).commit();
+    }
+
+    private void showNoInternet() {
+        getFragmentManager().beginTransaction().replace(R.id.container, new NoInternetFragment()).commit();
+    }
+
+    public void showLoading() {
         getFragmentManager().beginTransaction().replace(R.id.container, new LoadingFragment()).commit();
     }
-//
-//    private void showLogin() {
-//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoginFragment()).commit();
-//    }
+
+    public void showLogin() {
+        getFragmentManager().beginTransaction().replace(R.id.container, new LoginFragment()).commit();
+    }
 
     private void setUpActionBar() {
         // Inflate your custom layout
@@ -53,30 +80,33 @@ public class LoginActivity extends Activity {
         showMenuButton.setVisibility(View.GONE);
     }
 
-//    public static class NoInternetFragment extends android.support.v4.app.Fragment {
-//        public NoInternetFragment() {
-//            super();
-//        }
-//
-//        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//            final View rootView = inflater.inflate(R.layout.fragment_no_internet, container, false);
-//
-//            ((TextView) rootView.findViewById(R.id.check_your_connection)).setTypeface(Papaya.robotoLight);
-//
-//            final TextView tryAgainButton = (TextView) rootView.findViewById(R.id.try_again);
-//            tryAgainButton.setTypeface(Papaya.robotoLight);
-//            tryAgainButton.setOnClickListener(new View.OnClickListener() {
-//                public void onClick(View view) {
-//                    if (!VKSdk.isLoggedIn()) {
-//                        ((LoginActivity) getActivity()).showLogin();
-//                    } else if (VKSdk.wakeUpSession()) {
-//                        ((LoginActivity) getActivity()).showLoading();
-//                        ((LoginActivity) getActivity()).getVkId();
-//                    }
-//                }
-//            });
-//
-//            return rootView;
-//        }
-//    }
+    public static class NoInternetFragment extends Fragment {
+
+        private Context context;
+
+        public NoInternetFragment() {
+            super();
+        }
+
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            final View rootView = inflater.inflate(R.layout.fragment_no_internet, container, false);
+            context = rootView.getContext();
+
+            ((TextView) rootView.findViewById(R.id.check_your_connection)).setTypeface(Papaya.robotoLight);
+
+            final Button tryAgainButton = (Button) rootView.findViewById(R.id.try_again);
+            tryAgainButton.setTypeface(Papaya.robotoLight);
+            tryAgainButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    if (Papaya.isOnline(context)) {
+                        ((LoginActivity) getActivity()).showLogin();
+                    } else {
+                        ((LoginActivity) getActivity()).showNoInternet();
+                    }
+                }
+            });
+
+            return rootView;
+        }
+    }
 }

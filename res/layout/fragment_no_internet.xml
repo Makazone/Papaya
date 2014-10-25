@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@color/white">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center" android:layout_margin="10dp">
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium"
+                  android:text="@string/check_connection"
+                  android:id="@+id/check_your_connection"
+                  android:layout_below="@+id/imageView"
+                  android:layout_centerHorizontal="true"
+                  android:layout_gravity="center_horizontal"
+                  android:layout_marginTop="20dp"/>
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/try_again"
+                android:id="@+id/try_again"
+                android:layout_below="@+id/textView"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:padding="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"/>
+    </LinearLayout>
+</FrameLayout>

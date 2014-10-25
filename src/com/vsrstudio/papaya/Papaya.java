@@ -3,6 +3,8 @@ package com.vsrstudio.papaya;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.vsrstudio.papaya.model.User;
@@ -39,6 +41,12 @@ public class Papaya {
         robotoSlabRegular = Typeface.createFromAsset(assetManager, "RobotoSlab-Regular.ttf");
         robotoSlabLight = Typeface.createFromAsset(assetManager, "RobotoSlab-Light.ttf");
         robotoLight = Typeface.createFromAsset(assetManager, "Roboto-Light.ttf");
+    }
+
+    public static boolean isOnline(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 }
