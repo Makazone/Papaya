@@ -145,7 +145,8 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
         return null;
     }
 
-    protected void onPostExecute() {
+    @Override
+    protected void onPostExecute(Void aVoid) {
         int N = volumes.getTotalItems();
 
         Log.d("ALBINA____________________________", N+"");
