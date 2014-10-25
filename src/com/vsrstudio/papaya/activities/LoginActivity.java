@@ -1,16 +1,17 @@
 package com.vsrstudio.papaya.activities;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
+import com.vsrstudio.papaya.fragments.LoadingFragment;
 
-public class LoginActivity extends FragmentActivity implements View.OnClickListener {
+public class LoginActivity extends Activity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,16 +20,15 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         setUpActionBar();
 
         Papaya.setUpParse(this);
-
     }
 
-//    private void showNoInternet() {
+    //    private void showNoInternet() {
 //        getSupportFragmentManager().beginTransaction().replace(R.id.container, new NoInternetFragment()).commit();
 //    }
 //
-//    private void showLoading() {
-//        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoadingFragment()).commit();
-//    }
+    private void showLoading() {
+        getFragmentManager().beginTransaction().replace(R.id.container, new LoadingFragment()).commit();
+    }
 //
 //    private void showLogin() {
 //        getSupportFragmentManager().beginTransaction().replace(R.id.container, new LoginFragment()).commit();
@@ -51,12 +51,6 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
 
         final ImageButton showMenuButton = (ImageButton) findViewById(R.id.show_menu);
         showMenuButton.setVisibility(View.GONE);
-    }
-
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-        }
     }
 
 //    public static class NoInternetFragment extends android.support.v4.app.Fragment {
