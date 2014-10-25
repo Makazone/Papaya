@@ -29,7 +29,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        Papaya.initializeFonts(this);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // set a custom shadow that overlays the main content when the drawer opens

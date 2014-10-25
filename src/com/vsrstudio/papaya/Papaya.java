@@ -12,14 +12,17 @@ public class Papaya {
      */
 
     private static boolean wasSetUp = false;
+
     public static void setUpParse(Context context) {
         if (!wasSetUp) {
-            Parse.initialize(context, "5jOeErzAv4j5BCWsLxNrjicpDvnhnH5cyyds6X4n", "gKJOrNRPpxW9i4lyWwaVog3apmaNsI3HR02sft4k");
+            Parse.initialize(context, "5jOe Av4j5BCWsLxNrjicpDvnhnH5cyyds6X4n", "gKJOrNRPpxW9i4lyWwaVog3apmaNsI3HR02sft4k");
             wasSetUp = true;
         }
     }
 
-    /** PARSE METHODS END **/
+    /**
+     * PARSE METHODS END *
+     */
 
     public static Typeface robotoSlabRegular;
     public static Typeface robotoSlabLight;
