@@ -58,8 +58,9 @@ public class Book extends ParseObject {
      * type = 2 exchange
      * @param type
      */
-    public void createBookOffer(int type, int amount) {
-
+    public void createBookOffer(int type, int amount){
+        setType(type);
+        setAmount(amount);
     }
 
     public ParseUser getOwner() {
@@ -116,6 +117,20 @@ public class Book extends ParseObject {
 
     public void setTitle(String title) {
         put("title", title);
+    }
+
+    public void setType(int type){
+        put("type",type);
+    }
+    public int getType(int type){
+        return getInt("type");
+    }
+
+    public void setAmount(int amount){
+        put("amount",amount);
+    }
+    public int getAmount(int amount){
+        return getInt("amount");
     }
 }
 
