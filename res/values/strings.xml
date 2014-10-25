@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Papaya</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="last">Last</string>
+    <string name="my_books">My books</string>
+    <string name="settings">Settings</string>
 </resources>
