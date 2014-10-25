@@ -12,12 +12,19 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.LoadingFragment;
 import com.vsrstudio.papaya.fragments.LoginFragment;
 import com.vsrstudio.papaya.fragments.RegistrationFragment;
+import com.vsrstudio.papaya.model.Book;
+import com.vsrstudio.papaya.model.User;
+
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class LoginActivity extends Activity {
 
@@ -29,7 +36,7 @@ public class LoginActivity extends Activity {
 
         if (Papaya.isOnline(this)) {
             Papaya.setUpParse(this);
-            if (ParseUser.getCurrentUser() == null) {
+            if (User.currentUser == null) {
                 showRegistration();
             } else {
                 startMainActivity();
@@ -37,6 +44,7 @@ public class LoginActivity extends Activity {
         } else {
             showNoInternet();
         }
+
     }
 
     public void startMainActivity() {

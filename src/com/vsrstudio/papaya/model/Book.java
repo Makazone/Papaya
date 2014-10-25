@@ -1,8 +1,10 @@
 package com.vsrstudio.papaya.model;
 
-import com.parse.Parse;
-import com.parse.ParseClassName;
-import com.parse.ParseObject;
+import android.util.Log;
+import com.parse.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ParseClassName("Book")
 public class Book extends ParseObject {
@@ -19,6 +21,35 @@ public class Book extends ParseObject {
 
     public static Book[] findBooksByString(String query) {
         return null;
+    }
+
+    public static void getBooksForOwner(ParseUser owner, final FindCallback callback) {
+        ParseQuery<Book> query = ParseQuery.getQuery("Book");
+        query.whereEqualTo("owner", owner);
+
+        final ArrayList<Book> books = new ArrayList<Book>();
+
+        query.findInBackground(new FindCallback<Book>() {
+            public void done(List<Book> scoreList, ParseException e) {
+                if (e == null) {
+                    callback.done(scoreList, e);
+//                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+//                    for (Book book : scoreList) {
+//                        books.add((Book)book);
+//                    }
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    public ParseUser getOwner() {
+        return (ParseUser)getParseObject("owner");
+    }
+
+    public void setOwner(ParseUser owner) {
+        put("owner", owner);
     }
 
     public int getRating() {

@@ -15,10 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
+import com.vsrstudio.papaya.model.Book;
 import com.vsrstudio.papaya.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -60,6 +67,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             setItemChecked(findViewById(R.id.item_search));
             selectItem(1);
         }
+
     }
 
     private void setUpActionBar() {
@@ -84,7 +92,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void setUpDrawer() {
         final TextView profileItem = (TextView) findViewById(R.id.item_profile);
         profileItem.setTypeface(Papaya.robotoSlabLight);
-        profileItem.setText(User.getCurrentUser().getUsername());
+        profileItem.setText(User.currentUser.getParseUser().getUsername());
         profileItem.setOnClickListener(this);
 
         final TextView searchItem = (TextView) findViewById(R.id.item_search);

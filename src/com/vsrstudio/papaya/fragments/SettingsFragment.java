@@ -44,7 +44,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 logoutAndExit();
                 break;
             case R.id.delete_user_button:
-                User.getCurrentUser().deleteInBackground(new DeleteCallback() {
+                User.currentUser.getParseUser().deleteInBackground(new DeleteCallback() {
                     public void done(ParseException e) {
                         if (e == null) {
                             logoutAndExit();
@@ -60,7 +60,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private void logoutAndExit() {
         Intent intent;
-        User.logOut();
+        User.currentUser.logOut();
+//        User.currentUser.getParseUser().logOut();
         intent = new Intent(getActivity(), LoginActivity.class);
         getActivity().startActivity(intent);
         getActivity().finish();
