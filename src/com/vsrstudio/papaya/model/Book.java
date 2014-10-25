@@ -30,6 +30,20 @@ public class Book extends ParseObject {
         setGenre(genre);
     }
 
+    public static void findBooksByGenre(String genre, final FindCallback<Book> callback) {
+        ParseQuery<Book> query = ParseQuery.getQuery("Book");
+        query.whereEqualTo("genre", genre);
+
+        query.findInBackground(new FindCallback<Book>() {
+            public void done(java.util.List<Book> books, ParseException e) {
+                if (e == null) {
+                    callback.done(books, e);
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+    }
 
     public static void findBooksByString(String query, final GoogleCallback<Book> callback) throws Exception {
         new RetrieveTask().execute(query, callback);
@@ -61,6 +75,7 @@ public class Book extends ParseObject {
     public void createBookOffer(int type, int amount){
         setType(type);
         setAmount(amount);
+        saveInBackground();
     }
 
     public ParseUser getOwner() {

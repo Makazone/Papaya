@@ -15,10 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
+import com.vsrstudio.papaya.model.Book;
+import com.vsrstudio.papaya.model.Request;
 import com.vsrstudio.papaya.model.User;
+
+import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -60,6 +67,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
             setItemChecked(findViewById(R.id.item_search));
             selectItem(1);
         }
+
+//        Book a = new Book("testBook2", "2", "History", "none", "none", 5);
+//        a.setOwner(User.currentUser.getParseUser());
+//        a.saveInBackground();
+//
+//        Book b = new Book("testBook2.2", "3", "Kid books", "none", "none", 1);
+//        b.setOwner(User.currentUser.getParseUser());
+//        b.saveInBackground();
+
+        final Book b = ParseObject.createWithoutData(Book.class, "MApkGotOo9");
+
+        // getUserBooks
+        User currentUser = User.currentUser;
+        currentUser.findUserBooks(new FindCallback<Book>() {
+            @Override
+            public void done(List<Book> list, ParseException e) {
+                Request.makeRequest(list, b, Request.ALL, 0);
+            }
+        });
 
     }
 
