@@ -31,8 +31,8 @@ public class Book extends ParseObject {
     public static Book[] findBooksByString(String query) throws Exception {
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         Books books = new Books.Builder(GoogleNetHttpTransport.newTrustedTransport(), jsonFactory, null)
-                .setApplicationName("GBooks")
-                .setGoogleClientRequestInitializer(new BooksRequestInitializer("AIzaSyCyJ53XYkylA1w9Cr1CLshnaS3OB2JPLRA"))
+                .setApplicationName("Papaya")
+                .setGoogleClientRequestInitializer(new BooksRequestInitializer("AIzaSyAYFq146ySDF7lYG1QOXXLNqlxBuYh3yBQ"))
                 .build();
         // Set query string and filter only Google eBooks.
         System.out.println("Query: [" + query + "]");
