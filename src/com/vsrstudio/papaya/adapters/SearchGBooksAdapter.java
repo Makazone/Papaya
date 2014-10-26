@@ -2,7 +2,6 @@ package com.vsrstudio.papaya.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,19 +9,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
-import com.vsrstudio.papaya.activities.BookActivity;
+import com.vsrstudio.papaya.activities.AddBookActivity;
 import com.vsrstudio.papaya.model.Book;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class BooksListAdapter extends BaseAdapter implements View.OnClickListener {
+public class SearchGBooksAdapter extends BaseAdapter implements View.OnClickListener {
 
     private final Context context;
-    private final List<Book> books;
+    private final ArrayList<Book> books;
+    private final AddBookActivity activity;
 
-    public BooksListAdapter(Context context, List<Book> books) {
+    public SearchGBooksAdapter(Context context, ArrayList<Book> books, AddBookActivity activity) {
         this.context = context;
         this.books = books;
+        this.activity = activity;
     }
 
     public View getView(int i, View convertView, ViewGroup viewGroup) {
@@ -41,24 +42,18 @@ public class BooksListAdapter extends BaseAdapter implements View.OnClickListene
         genre.setTypeface(Papaya.robotoLight);
         genre.setText(books.get(i).getGenre());
 
-        convertView.setContentDescription(books.get(i).getObjectId());
+        convertView.setContentDescription(i + "");
         convertView.setOnClickListener(this);
 
         return convertView;
     }
 
     public void onClick(View view) {
-        startBookActivity(view);
-    }
-
-    private void startBookActivity(View view) {
-        Intent intent = new Intent(context, BookActivity.class);
-        intent.putExtra("object_id", String.valueOf(view.getContentDescription()));
-        context.startActivity(intent);
+        activity.showBookInfoFragment(Integer.parseInt(String.valueOf(view.getContentDescription())));
     }
 
     public int getCount() {
-        return books.size();
+        return (books == null) ? 0 : books.size();
     }
 
     public Object getItem(int i) {

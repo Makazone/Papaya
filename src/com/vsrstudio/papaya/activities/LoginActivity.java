@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.LoadingFragment;
@@ -25,6 +29,8 @@ import java.util.ArrayList;
 
 public class LoginActivity extends Activity {
 
+    private final Context context = this;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.empty_layout);
@@ -32,22 +38,49 @@ public class LoginActivity extends Activity {
         Papaya.initializeFonts(this);
         setUpActionBar();
 
-        if (Papaya.isOnline(this)) {
-            Papaya.setUpParse(this);
-            if (User.currentUser == null) {
-                showRegistration();
-            } else {
-                startMainActivity();
-            }
+        SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+        final String email = sharedPreferences.getString("email", null);
+        final String password = sharedPreferences.getString("password", null);
+
+        if (email != null && !email.equals("")) {
+            User.logInUser(email, password, new LogInCallback() {
+                public void done(ParseUser parseUser, ParseException e) {
+                    if (e == null) {
+                        startMainActivity();
+                    } else {
+                        e.printStackTrace();
+
+                        if (Papaya.isOnline(context)) {
+                            Papaya.setUpParse(context);
+                            if (User.currentUser == null) {
+                                showRegistration();
+                            } else {
+                                startMainActivity();
+                            }
+                        } else {
+                            showNoInternet();
+                        }
+                    }
+                }
+            });
         } else {
-            showNoInternet();
+            if (Papaya.isOnline(this)) {
+                Papaya.setUpParse(this);
+                if (User.currentUser == null) {
+                    showRegistration();
+                } else {
+                    startMainActivity();
+                }
+            } else {
+                showNoInternet();
+            }
         }
 
         try {
             Book.findBooksByString("java", new GoogleCallback<Book>() {
                 @Override
                 public void completedGoogleTask(ArrayList<Book> books) {
-                    System.out.println("SIZEEEE"+books.size());
+                    System.out.println("SIZEEEE" + books.size());
                     for (Book b : books) {
                         System.out.println("TITLE ALBINA" + b.getTitle());
                     }

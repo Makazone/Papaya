@@ -2,6 +2,7 @@ package com.vsrstudio.papaya.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,12 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
         final String email = String.valueOf(this.email.getText());
         final String password = String.valueOf(this.password.getText());
 
-//        User user = new User();
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", email);
+        editor.putString("password", password);
+        editor.apply();
+
         User.createNewUser(email, password, new SignUpCallback() {
             public void done(ParseException e) {
                 if (e == null) {
@@ -61,18 +67,6 @@ public class RegistrationFragment extends Fragment implements View.OnClickListen
                 }
             }
         });
-//        user.setUsername(email);
-//        user.setPassword(password);
-//        user.signUpInBackground(new SignUpCallback() {
-//            public void done(ParseException e) {
-//                if (e == null) {
-//                    ((LoginActivity) getActivity()).startMainActivity();
-//                } else {
-//                    e.printStackTrace();
-//                    Toast.makeText(context, R.string.connection_error, Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
     }
 
     public void onClick(View view) {

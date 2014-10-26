@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
@@ -111,7 +112,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private void setUpDrawer() {
         final TextView profileItem = (TextView) findViewById(R.id.item_profile);
         profileItem.setTypeface(Papaya.robotoSlabLight);
-        profileItem.setText(User.currentUser.getParseUser().getUsername());
+        profileItem.setText(ParseUser.getCurrentUser().getUsername());
         profileItem.setOnClickListener(this);
 
         final TextView searchItem = (TextView) findViewById(R.id.item_search);

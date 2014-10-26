@@ -2,6 +2,7 @@ package com.vsrstudio.papaya.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.vsrstudio.papaya.R;
+import com.vsrstudio.papaya.activities.AddBookActivity;
 import com.vsrstudio.papaya.adapters.BooksListAdapter;
 import com.vsrstudio.papaya.model.Book;
 import com.vsrstudio.papaya.model.User;
@@ -52,14 +54,18 @@ public class MyBooksFragment extends Fragment implements View.OnClickListener, A
 
         floatingActionButton = (FloatingActionButton) rootView.findViewById(R.id.add_book_button);
         floatingActionButton.setColorNormal(context.getResources().getColor(R.color.accent_orange_600));
-        floatingActionButton.setColorPressed(context.getResources().getColor(R.color.accent_orange_500));
+        floatingActionButton.setColorPressed(context.getResources().getColor(R.color.accent_orange_400));
         floatingActionButton.setOnClickListener(this);
 
         return rootView;
     }
 
     public void onClick(View view) {
-        Toast.makeText(context, "Add book", Toast.LENGTH_SHORT).show();
+        startAddBookActivity();
+    }
+
+    private void startAddBookActivity() {
+        context.startActivity(new Intent(context, AddBookActivity.class));
     }
 
     private int mLastFirstVisibleItem;

@@ -31,10 +31,5 @@
                 android:layout_width="0dp"
                 android:layout_height="fill_parent" android:layout_weight="1" android:visibility="invisible">
         </LinearLayout>
-        <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/rating_bar" style="@style/RatingBarSmall" android:numStars="5"
-                android:layout_gravity="center_vertical"/>
     </LinearLayout>
 </LinearLayout>
