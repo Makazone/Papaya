@@ -23,9 +23,11 @@ import com.vsrstudio.papaya.Papaya;
 import com.vsrstudio.papaya.R;
 import com.vsrstudio.papaya.fragments.*;
 import com.vsrstudio.papaya.model.Book;
+import com.vsrstudio.papaya.model.GoogleCallback;
 import com.vsrstudio.papaya.model.Request;
 import com.vsrstudio.papaya.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -77,16 +79,27 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //        b.setOwner(User.currentUser.getParseUser());
 //        b.saveInBackground();
 
-        final Book b = ParseObject.createWithoutData(Book.class, "MApkGotOo9");
+//        final Book b = ParseObject.createWithoutData(Book.class, "MApkGotOo9");
+//
+//        // getUserBooks
+//        User currentUser = User.currentUser;
+//        currentUser.findUserBooks(new FindCallback<Book>() {
+//            @Override
+//            public void done(List<Book> list, ParseException e) {
+//                Request.makeRequest(list, b, Request.ALL, 0);
+//            }
+//        });
 
-        // getUserBooks
-        User currentUser = User.currentUser;
-        currentUser.findUserBooks(new FindCallback<Book>() {
-            @Override
-            public void done(List<Book> list, ParseException e) {
-                Request.makeRequest(list, b, Request.ALL, 0);
-            }
-        });
+//        try {
+//            Book.findBooksByString("Java", new GoogleCallback<Book>() {
+//                @Override
+//                public void completedGoogleTask(ArrayList<Book> list) {
+//
+//                }
+//            });
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
     }
 

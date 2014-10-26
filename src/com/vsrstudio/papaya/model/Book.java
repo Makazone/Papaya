@@ -182,7 +182,8 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
         Log.d("ALBINA____________________________", N+"");
 
         if (N == 0 || volumes.getItems() == null) {
-            //return 0;
+            callback.completedGoogleTask(null);
+            return;
         }
 
         ArrayList<Book> book = new ArrayList<Book>();
@@ -191,10 +192,7 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
         for (Volume volume : volumes.getItems()) {
             Volume.VolumeInfo volumeInfo = volume.getVolumeInfo();
             Book b = new Book();
-            book.add(b);
-            //Volume.SaleInfo saleInfo = volume.getSaleInfo();
-            // Title.
-            book.get(iB).setTitle(volumeInfo.getTitle());
+
             // Author(s).
             java.util.List<String> authors = volumeInfo.getAuthors();
             String strAuthors = "";
@@ -206,16 +204,37 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
                     }
                 }
             }
-            book.get(iB).setAuthors(strAuthors);
+
+            // Categories
+            java.util.List<String> categories = volumeInfo.getCategories();
+            String categoryStr = "";
+            if (categories != null && !categories.isEmpty()) {
+                for (int i = 0; i < categories.size(); ++i) {
+                    categoryStr += categories.get(i);
+                    if (i < categories.size() - 1) {
+                        categoryStr += ", ";
+                    }
+                }
+            }
+
+            b.setGenre(categoryStr);
+            b.setAuthors(strAuthors);
+
+            System.out.println(volumeInfo.getImageLinks());
+//            String bookImg = volumeInfo.getImageLinks().getSmall();
+//            System.out.println("IMAGE - " + bookImg);
+
             // Description (if any).
             if (volumeInfo.getDescription() != null && volumeInfo.getDescription().length() > 0) {
-                book.get(iB).setDescription(volumeInfo.getDescription());
+                b.setDescription(volumeInfo.getDescription());
             }
             // Ratings (if any).
             if (volumeInfo.getRatingsCount() != null && volumeInfo.getRatingsCount() > 0) {
                 int fullRating = (int) Math.round(volumeInfo.getAverageRating().doubleValue());
-                book.get(iB).setRating(volumeInfo.getRatingsCount());
+                b.setRating(volumeInfo.getRatingsCount());
             }
+
+            book.add(b);
             iB++;
         }
 
