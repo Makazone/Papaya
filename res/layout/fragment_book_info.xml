@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:padding="20dp">
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:hint="@string/title"
+                android:inputType="textMultiLine"
+                android:textColor="@color/text_color"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/authors"
+                android:hint="@string/authors"
+                android:inputType="textMultiLine" android:layout_marginTop="10dp"
+                android:textColor="@color/secondary_text_color"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/genre"
+                android:hint="@string/genre"
+                android:inputType="textMultiLine" android:layout_marginTop="10dp"
+                android:textColor="@color/secondary_text_color"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:hint="@string/description"
+                android:inputType="textMultiLine" android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp" android:textColor="@color/text_color"/>
+    </LinearLayout>
+</ScrollView>

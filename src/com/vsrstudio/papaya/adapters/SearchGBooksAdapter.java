@@ -39,8 +39,7 @@ public class SearchGBooksAdapter extends BaseAdapter implements View.OnClickList
         author.setText(books.get(i).getAuthors());
 
         final TextView genre = (TextView) convertView.findViewById(R.id.genre);
-        genre.setTypeface(Papaya.robotoLight);
-        genre.setText(books.get(i).getGenre());
+        genre.setVisibility(View.GONE);
 
         convertView.setContentDescription(i + "");
         convertView.setOnClickListener(this);

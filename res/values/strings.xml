@@ -25,6 +25,11 @@
     <string name="book">Book</string>
     <string name="add_book">Add book</string>
 
+    <string name="title">Title</string>
+    <string name="authors">Author/authors</string>
+    <string name="genre">Genre</string>
+    <string name="description">Description</string>
+
     <string-array name="genres">
         <item>Business books</item>
         <item>Biographies and memoirs</item>

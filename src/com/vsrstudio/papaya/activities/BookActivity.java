@@ -55,9 +55,6 @@ public class BookActivity extends Activity implements View.OnClickListener {
         genre.setTypeface(Papaya.robotoLight);
         genre.setText(book.getGenre());
 
-        final RatingBar ratingBar = (RatingBar) findViewById(R.id.rating_bar);
-        ratingBar.setRating(book.getRating());
-
         final TextView description = (TextView) findViewById(R.id.description);
         description.setTypeface(Papaya.robotoLight);
         description.setText(book.getDescription());

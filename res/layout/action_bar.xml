@@ -27,4 +27,11 @@
               android:id="@+id/title"
               android:layout_centerVertical="true"
               android:layout_centerHorizontal="true" android:gravity="center"/>
+    <ImageButton android:layout_width="?android:actionBarSize"
+                 android:layout_height="match_parent"
+                 android:id="@+id/ok"
+                 android:src="@drawable/ic_ok"
+                 android:background="@drawable/color_selector_actionbar"
+                 android:visibility="gone" android:layout_alignParentTop="true"
+                 android:layout_alignParentRight="true" android:layout_alignParentEnd="true"/>
 </RelativeLayout>
