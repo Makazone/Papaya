@@ -219,6 +219,7 @@ class RetrieveTask extends AsyncTask<Object, Void, Void> {
 
             b.setGenre(categoryStr);
             b.setAuthors(strAuthors);
+            b.setTitle(volumeInfo.getTitle());
 
             System.out.println(volumeInfo.getImageLinks());
 //            String bookImg = volumeInfo.getImageLinks().getSmall();
