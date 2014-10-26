@@ -20,6 +20,10 @@
     <string name="logout">Logout</string>
     <string name="delete_user">Delete user</string>
     <string name="registration">Registration</string>
+    <string name="open_in_gbooks">Open in\nGoogle Books</string>
+    <string name="exchange">Exchange</string>
+    <string name="book">Book</string>
+    <string name="add_book">Add book</string>
 
     <string-array name="genres">
         <item>Business books</item>

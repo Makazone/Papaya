@@ -2,6 +2,7 @@ package com.vsrstudio.papaya.fragments;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         User.logInUser(email, password, new LogInCallback() {
             public void done(ParseUser parseUser, ParseException e) {
                 if (e == null) {
+                    SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("email", email);
+                    editor.putString("password", password);
+                    editor.apply();
+
                     ((LoginActivity) getActivity()).startMainActivity();
                 } else {
                     e.printStackTrace();

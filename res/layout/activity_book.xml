@@ -3,6 +3,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent" android:padding="20dp">
 
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/book_title" android:layout_gravity="center_horizontal"
+            android:textColor="@color/text_color"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/authors" android:layout_gravity="right" android:textColor="@color/secondary_text_color"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/genre" android:layout_gravity="right" android:textColor="@color/secondary_text_color"/>
+    <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_bar" android:layout_gravity="right" android:numStars="5"
+            style="@style/RatingBarSmall"/>
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/description" android:layout_gravity="center_horizontal" android:gravity="center_horizontal"
+            android:textColor="@color/text_color"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open_in_gbooks"
+                android:id="@+id/open_in_gbooks_button" android:layout_marginRight="10dp" android:padding="20dp"
+                android:layout_gravity="center_vertical"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exchange"
+                android:id="@+id/exchange_button" android:padding="20dp" android:layout_gravity="center_vertical"/>
+    </LinearLayout>
 </LinearLayout>

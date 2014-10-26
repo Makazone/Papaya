@@ -22,7 +22,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/try_again"
                 android:id="@+id/try_again"
-                android:layout_below="@+id/textView"
+                android:layout_below="@+id/title"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/black"
                 android:padding="20dp"

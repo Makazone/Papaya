@@ -2,8 +2,6 @@ package com.vsrstudio.papaya.model;
 
 import com.parse.*;
 
-import java.util.ArrayList;
-
 public class User {
     public static User currentUser;
     private ParseUser parseUser;
@@ -28,7 +26,7 @@ public class User {
     }
 
     public void logOut() {
-        parseUser.logOut();
+//        parseUser.logOut();
         parseUser = null;
     }
 

@@ -10,5 +10,5 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="ProfileFragment"
-            android:id="@+id/textView" android:layout_gravity="center_horizontal"/>
+            android:id="@+id/title" android:layout_gravity="center_horizontal"/>
 </LinearLayout>
